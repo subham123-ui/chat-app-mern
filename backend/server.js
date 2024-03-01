@@ -1,16 +1,21 @@
 import express from "express";
 import dotenv  from "dotenv";
 import authRoutes from "./routes/auth.routes.js"
+import connectToMongoDB from "./db/connectToMongoDB.js";
 
 const app = express();
-dotenv.config();
-
 const PORT = process.env.PORT || 5000;
 
-app.get("/", (req, res) => {
-    //root route http://localhost:5000/
-    res.send("Hello !");
-});
+dotenv.config();
+
+app.use(express.json()); // to parse the incoming requests with JSON paylods (from req.body)
+
+app.use("/api/auth", authRoutes);
+
+// app.get("/", (req, res) => {
+//     //root route http://localhost:5000/
+//     res.send("Hello !");
+// });
 
 // app.get("/api/auth/signup", (req, res) => {
 //     console.log("signup route");
@@ -24,6 +29,8 @@ app.get("/", (req, res) => {
 //     console.log("logout route");
 // });
 
-app.use("/api/auth", authRoutes);
 
-app.listen(PORT, () => console.log(`Server is running on ${PORT}` ));
+app.listen(PORT, () => {
+    connectToMongoDB();
+    console.log(`Server is running on ${PORT}`);
+} );
