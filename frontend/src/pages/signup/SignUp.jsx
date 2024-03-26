@@ -12,20 +12,19 @@ const SignUp = () => {
     gender: "",
   });
 
-   const {loading,signup} = useSignup();
-  
-  const handleCheckboxChange = (gender) => {
-    setInputs({...inputs, gender})
-  }
+  const { loading, signup } = useSignup();
 
-  const handleSubmit = async(e) => {
+  const handleCheckboxChange = (gender) => {
+    setInputs({ ...inputs, gender });
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    await signup(inputs)
-    
+    await signup(inputs);
   };
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
-      <div className="w-full p-6 rounded-lg shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
+      <div className="w-full p-6 rounded-lg shadow-md bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
           Sign Up <span className="text-blue-500">ChatApp</span>
         </h1>
@@ -98,7 +97,10 @@ const SignUp = () => {
             />
           </div>
 
-          <GenderCheckbox onCheckboxChange = {handleCheckboxChange} selectedGender={inputs.gender} />
+          <GenderCheckbox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={inputs.gender}
+          />
 
           <Link
             to={"/login"}
@@ -109,8 +111,15 @@ const SignUp = () => {
           </Link>
 
           <div>
-            <button className="btn btn-outline btn-block btn-sm mt-2 text-gray-200">
-              Sign Up
+            <button
+              className="btn btn-outline btn-block btn-sm mt-2 text-gray-200"
+              disabled={loading}
+            >
+              {loading ? (
+                <span className="loading loading-spinner"></span>
+              ) : (
+                "Sign Up"
+              )}
             </button>
           </div>
         </form>
