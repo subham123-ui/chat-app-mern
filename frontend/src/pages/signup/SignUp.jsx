@@ -26,7 +26,7 @@ const SignUp = () => {
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-gray-500 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
         <h1 className="text-3xl font-semibold text-center text-gray-300">
-          Sign Up <span className="text-blue-500">ChatApp</span>
+          Sign Up <span className="text-orange-600">ChatApp</span>
         </h1>
 
         <form onSubmit={handleSubmit}>
@@ -104,7 +104,7 @@ const SignUp = () => {
 
           <Link
             to={"/login"}
-            className="text-gray-200 text-sm hover:underline hover:text-blue-700 mt-2 inline-block"
+            className="text-gray-200 text-sm hover:underline hover:text-orange-600 mt-2 inline-block"
             href="#"
           >
             Already have an account?
@@ -112,7 +112,7 @@ const SignUp = () => {
 
           <div>
             <button
-              className="btn btn-outline btn-block btn-sm mt-2 text-gray-200"
+              className="btn btn-outline hover:bg-orange-600 btn-block btn-sm mt-2 text-gray-200"
               disabled={loading}
             >
               {loading ? (
